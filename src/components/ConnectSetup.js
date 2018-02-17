@@ -31,7 +31,7 @@ export default class ConnectSetup extends React.Component {
             <Card style={cardStyle}>
                 <Card.Content>
                     <Card.Header>Setup</Card.Header>
-                    <Message color={this.props.web3Store.connectStatus == 'Connected' ? 'green' : 'red'} >{this.props.web3Store.connectStatus}</Message>
+                    <Message color={this.props.web3Store.connectStatus === 'Connected' ? 'green' : 'red'} >{this.props.web3Store.connectStatus}</Message>
                     <Form style={formStyle}>
                         <Input
                             name="provider"
