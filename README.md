@@ -6,7 +6,7 @@ I have converted the sample app Decentralized Application Workbench from plain j
 
 The original app can be found here http://thedapps.com/DAPP-Workbench102/
 
-The React version can be found here
+The React version can be found here http://dapp-ether.s3-website-ap-southeast-1.amazonaws.com/
 
 ## Prerequisites
 - yarn https://yarnpkg.com/lang/en/docs/install/
