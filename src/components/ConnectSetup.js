@@ -45,9 +45,6 @@ export default class ConnectSetup extends React.Component {
                         <Button primary onClick={this.handleNodeStatus}>Node Status</Button>
                     </div>
                 </Card.Content>
-                <Card.Content extra>
-                    {this.props.web3Store.getPeerCount}
-                </Card.Content>
             </Card>
         )
     }

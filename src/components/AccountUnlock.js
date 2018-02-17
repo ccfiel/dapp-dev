@@ -43,8 +43,8 @@ export default class AccountUnlock extends React.Component {
                     </Form>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button color='green' onClick={this.handleUnlockAccount}>UnLock Account</Button>
-                    <Button color='red' onClick={this.handleLockAccount}>Lock Account</Button>
+                    <Button color='green' onClick={this.handleUnlockAccount} disabled={this.props.web3Store.disableUnlockFeature}>UnLock Account</Button>
+                    <Button color='red' onClick={this.handleLockAccount} disabled={this.props.web3Store.disableUnlockFeature}>Lock Account</Button>
                 </Card.Content>
             </Card>
         )

@@ -6,7 +6,7 @@ const etherScanBaseUrl = 'https://ropsten.etherscan.io/';
 
 class Web3Store {
     @observable connectStatus = 'No Connected'
-    @observable getPeerCount = ''
+    @observable getPeerCount = 0
     @observable providerUrl = 'http://localhost:8545'
     @observable versionInformation = ''
     @observable nodeType = ''
@@ -65,17 +65,36 @@ class Web3Store {
     @observable contractInstanceAddress = ''
     @observable getContractInstanceLogList = []
     @observable getContractInstanceLogCount = '0'
+    @observable disableUnlockFeature = false
 
     contractEvent = undefined
     web3 = undefined
 
     @action doConnect() {
         this.web3 = new Web3(new Web3.providers.HttpProvider(this.providerUrl))
+        this.checkConnection()
+    }
 
+    checkConnection() {
         if (this.web3 && this.web3.isConnected()) {
             this.connectStatus = 'Connected'
+            this.setWeb3Version()
+            this.doGetNodeStatus()
         } else {
             this.connectStatus = 'Not Connected'
+        }
+    }
+    @action doCheckMetaMask() {
+        // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+        if (typeof window.web3 !== 'undefined') {
+            // Use Mist/MetaMask's provider
+            this.web3 = new Web3(window.web3.currentProvider);
+            this.checkConnection()
+        } else {
+            console.log('Injected web3 Not Found!!!')
+            // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+            this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+            this.web3 = new Web3(new Web3.providers.HttpProvider(this.providerUrl));
         }
     }
 
@@ -86,9 +105,9 @@ class Web3Store {
                 // Since connected lets get the count
                 this.web3.net.getPeerCount((error, result) => {
                     if (error) {
-                        this.getPeerCount = error
+                        this.getPeerCount = 0
                     } else {
-                        this.getPeerCount = 'Peer Count: ' + result
+                        this.getPeerCount = result
                     }
                 });
             }
@@ -107,6 +126,13 @@ class Web3Store {
                     this.nodeType = 'testrpc';
                 } else {
                     this.nodeType = 'geth';
+                }
+                if(this.nodeType === 'metamask' || this.nodeType === 'testrpc') {
+                    this.lockUnlockResult = 'Unlock / lock ( ) not supported for ' + this.nodeType
+                    this.disableUnlockFeature = true
+                } else {
+                    this.lockUnlockResult = '--'
+                    this.disableUnlockFeature = false
                 }
             }
         });

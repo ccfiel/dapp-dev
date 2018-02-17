@@ -25,13 +25,18 @@ import ContractEventsLatest from "./ContractEventsLatest";
 import ContractEventsWatch from "./ContractEventsWatch";
 import ContractEventsGet from "./ContractEventsGet";
 import ContractEventsLogs from "./ContractEventsLogs";
+import {inject, observer} from "mobx-react/index";
 
 const gridRowStyle = {
     paddingTop: '30px'
 }
 
-
+@inject('web3Store')
+@observer
 class App extends Component {
+    componentDidMount() {
+        this.props.web3Store.doCheckMetaMask()
+    }
     render() {
         return (
             <div>
