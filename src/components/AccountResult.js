@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card} from 'semantic-ui-react'
+import {Card, Message} from 'semantic-ui-react'
 import {observer, inject} from 'mobx-react';
 import {cardStyle} from './CommonStyle'
 
@@ -11,7 +11,7 @@ export default class AccountResult extends React.Component {
             <Card style={cardStyle}>
                 <Card.Content>
                     <Card.Header>Un/Lock Result</Card.Header>
-                    <Card.Meta>{this.props.web3Store.lockUnlockResult}</Card.Meta>
+                    <Message color='yellow' hidden={this.props.web3Store.lockUnlockResult ? false : true}>{this.props.web3Store.lockUnlockResult}</Message>
                 </Card.Content>
             </Card>
         )

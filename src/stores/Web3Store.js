@@ -15,7 +15,7 @@ class Web3Store {
     @observable accountBalancesList = []
     @observable coinBase = ''
     @observable defaultAccount = ''
-    @observable lockUnlockResult = '...'
+    @observable lockUnlockResult = ''
     @observable sendTransactionObjectJson = ''
     @observable sendTransactionObject = undefined
     @observable sendTransactionErrorOrResult = ''

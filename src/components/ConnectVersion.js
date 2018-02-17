@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card} from 'semantic-ui-react'
+import {Card, Message} from 'semantic-ui-react'
 import {observer, inject} from 'mobx-react';
 import {cardStyle} from './CommonStyle'
 
@@ -11,7 +11,7 @@ export default class ConnectVersion extends React.Component {
             <Card style={cardStyle}>
                 <Card.Content>
                     <Card.Header>Version</Card.Header>
-                    <Card.Meta>{this.props.web3Store.versionInformation}</Card.Meta>
+                    <Message color='yellow' hidden={this.props.web3Store.versionInformation ? false : true}>{this.props.web3Store.versionInformation}</Message>
                 </Card.Content>
             </Card>
         )

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Button, Form, Input} from 'semantic-ui-react'
+import {Card, Button, Form, Input, Message} from 'semantic-ui-react'
 import {observer, inject} from 'mobx-react';
 import {cardStyle, formStyle} from './CommonStyle'
 
@@ -31,7 +31,7 @@ export default class ConnectSetup extends React.Component {
             <Card style={cardStyle}>
                 <Card.Content>
                     <Card.Header>Setup</Card.Header>
-                    <Card.Meta>{this.props.web3Store.connectStatus}</Card.Meta>
+                    <Message color={this.props.web3Store.connectStatus == 'Connected' ? 'green' : 'red'} >{this.props.web3Store.connectStatus}</Message>
                     <Form style={formStyle}>
                         <Input
                             name="provider"
