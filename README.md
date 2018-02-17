@@ -1,9 +1,11 @@
-I enrolled the course in Ethereum : Decentralized Application Design & Development https://www.udemy.com/ethereum-dapp/ by
+I enrolled the course in Ethereum : [Decentralized Application Design & Development](https://www.udemy.com/ethereum-dapp) by
 Rajeev Sakhuja
 
 I have converted the sample app Decentralized Application Workbench from plain java to React JS
 
+
 The original app can be found here http://thedapps.com/DAPP-Workbench102/
+
 The React version can be found here
 
 ## Prerequisites
