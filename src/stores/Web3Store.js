@@ -66,6 +66,7 @@ class Web3Store {
     @observable getContractInstanceLogList = []
     @observable getContractInstanceLogCount = '0'
     @observable disableUnlockFeature = false
+    @observable showReminder = false
 
     contractEvent = undefined
     web3 = undefined
@@ -80,6 +81,7 @@ class Web3Store {
             this.connectStatus = 'Connected'
             this.setWeb3Version()
             this.doGetNodeStatus()
+            this.doGetAccounts()
         } else {
             this.connectStatus = 'Not Connected'
         }
@@ -154,7 +156,9 @@ class Web3Store {
                 // You need to have at least 1 account to proceed
                 if (result.length === 0) {
                     if (this.nodeType === 'metamask') {
-                        alert('Unlock MetaMask *and* click \'Get Accounts\'');
+                        console.log('im here!!!')
+                        this.showReminder = true
+                        //alert('Unlock MetaMask *and* click \'Get Accounts\'');
                     }
                     return;
                 }

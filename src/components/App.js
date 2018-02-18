@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './App.css'
-import {Card, Header, Grid, Segment} from 'semantic-ui-react'
+import {Card, Header, Grid, Segment, Modal} from 'semantic-ui-react'
 import ConnectVersion from "./ConnectVersion"
 import ConnectSetup from "./ConnectSetup"
 import AccountInfo from "./AccountInfo"
@@ -34,12 +34,27 @@ const gridRowStyle = {
 @inject('web3Store')
 @observer
 class App extends Component {
+
+    handleClose = () => {
+        this.props.web3Store.showReminder = false
+    }
+
     componentDidMount() {
         this.props.web3Store.doCheckMetaMask()
     }
     render() {
         return (
             <div>
+                <Modal
+                    size='mini'
+                    open={this.props.web3Store.showReminder}
+                    onClose={this.handleClose}
+                    header='Reminder!'
+                    content='Unlock MetaMask *and* click Get Accounts'
+                    actions={[
+                        { key: 'done', content: 'Ok', positive: true },
+                    ]}
+                />
                 <Grid centered>
                     <Grid.Row style={gridRowStyle}>
                         <Grid.Column width={14}>
